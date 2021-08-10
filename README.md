@@ -1,5 +1,5 @@
 # ShinyApp_test
-A Shiny App to match addresses string 
+A Shiny App to match addresses
 
 We try to find who has submited a farm plan and who hasn't for policy implementation.
 
