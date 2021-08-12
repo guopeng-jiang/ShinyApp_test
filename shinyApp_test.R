@@ -4,7 +4,7 @@ library(shiny)
 ui <- fluidPage(
   
   # App title ----
-  titlePanel("This is a Shiny APP for matching string fields"),
+  titlePanel("This is a Shiny APP for matching addresses"),
   
   # Sidebar layout with a input and output definitions ----
   sidebarLayout(
@@ -100,12 +100,13 @@ server <- function(input, output, session) {
     
     # test = "c(\"251 Mill Road, 0 Kashmir Road and 445 Clinton Makaretu Road.\", \"549 Black Road, RD 1, Takapau 4286\"\n)"
     #substr(gsub('\n)', "", noquote(test), fixed = T), 3, nchar(gsub('\n)', "", noquote(test), fixed = T)))
+    library(dplyr)
     
     long = data.frame(ID = dfile$sel[input$ID], address = substr( iconv(enc2utf8(pull(dfile$sel[input$variable]) ), sub= "byte"),1,15) )
     short = data.frame(ID = dfile$sel2[input$ID2], address = substr( iconv(enc2utf8(pull(dfile$sel2[input$variable2]) ), sub= "byte"),1,15) )
     
     library(fuzzyjoin)
-    library(dplyr)
+
     fuz_match = stringdist_join(long, short, by = "address", 
                                 mode = "left", ignore_case = T, method = "jw",max_dist = 3, 
                                 distance_col = "dist") %>% group_by(ID) %>% slice(which.min(dist))
