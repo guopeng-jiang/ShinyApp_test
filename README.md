@@ -3,4 +3,4 @@ A Shiny App to match addresses
 
 We try to find who has submited a farm plan and who hasn't for policy implementation.
 
-This is an attempt to use their property address without knowing their spatial extents.
+This is an attempt to match their property addresses.
